@@ -13,10 +13,14 @@
           <p><%= favo.micropost.content %></p>
         </div>
         <div class="">
+          <div style="float:left;">
           <%= render 'favos/favo_button', micropost: favo.micropost %>
+          </div>
           <% if current_user == favo.micropost.user %>
             <% mic = favo.micropost %>
-            <%= link_to "Delete", mic, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
+            <div style="float:left;">
+            <%= link_to "Delete", mic, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger col-xs-offset-2 btn-xs' %>
+            </div>
           <% end %>
         </div>
       </div>
