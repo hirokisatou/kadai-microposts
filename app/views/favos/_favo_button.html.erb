@@ -1,0 +1,12 @@
+
+  <% if current_user.favo?(micropost) %>
+    <%= form_for(current_user.favos.find_by(micropost_id: micropost.id), html: { method: :delete }) do |f| %>
+      <%= hidden_field_tag :micropost_id, micropost.id %>
+      <%= f.submit 'Unfavo', class: 'btn btn-warning btn-xs' %>
+    <% end %>
+  <% else %>
+    <%= form_for(current_user.favos.build) do |f| %>
+      <%= hidden_field_tag :micropost_id, micropost.id %>
+      <%= f.submit 'Favo', class: 'btn btn-primary btn-xs' %>
+    <% end %>
+  <% end %>

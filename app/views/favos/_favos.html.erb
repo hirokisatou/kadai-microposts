@@ -1,0 +1,26 @@
+<ul class="media-list">
+  <% favos.each do |favo| %>
+    <% user = favo.micropost.user %>
+    <li class="media">
+      <div class="media-left">
+        <img class="media-object img-rounded" src="<%= gravatar_url(current_user, options = { size: 50 }) %>" alt="">
+      </div>
+      <div class="media-body">
+        <div>
+          <%= link_to user.name, user_path(user) %> <span class="text-muted">posted at <%= favo.created_at %></span>
+        </div>
+        <div>
+          <p><%= favo.micropost.content %></p>
+        </div>
+        <div class="">
+          <%= render 'favos/favo_button', micropost: favo.micropost %>
+          <% if current_user == favo.micropost.user %>
+            <% mic = favo.micropost %>
+            <%= link_to "Delete", mic, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+  <%= paginate favos %>
+</ul>
